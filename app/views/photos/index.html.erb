@@ -20,6 +20,14 @@
 
 
 <% content_for :right do %>
-  <h1>Top photos</h1>
+  <h1>Top 3 photos</h1>
   <%= render :partial => 'photos', :locals => {:photos => @top_photos} %>
+  
+  <h1>Photo of the day</h1>
+  <p>
+    <% photo_of_the_day = Photo.find(:first, :conditions => ["LOWER(name) LIKE ? ", Time.now.strftime('%a').match(/[A-Z]/).to_s.downcase + '%'] ) || Photo.first %>
+    <a href="<%= photo_url(photo_of_the_day) %>">
+      <%= image_tag photo_of_the_day.body.url, :width => 120 %>
+    </a>
+  </p>
 <% end %>
