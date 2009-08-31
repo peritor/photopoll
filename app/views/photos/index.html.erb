@@ -11,8 +11,9 @@
   <form method="post" action="/photos/search">
     <input type="text" name="query" id="query">
     <input type="submit" name="Search" value="Search">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   </form>
-  
+
   <table>
   <% @photos.in_groups_of(4, false) do |group| %>
     <%= render :partial => 'photo_line', :locals => {:photos => group} %>

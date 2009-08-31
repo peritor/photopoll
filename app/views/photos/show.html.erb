@@ -9,15 +9,35 @@
   Average Rating: <%= @photo.ratings.all.map{|x| x.value.to_i}.sum / @photo.ratings.count.to_f %>
 </p>
 
-<div id="vote"></div>
+<p>
+  Your rating: <input type="text" name="comment" id="comment">
+  <div id="vote"></div>
+</p>
+
+<br />
+
+<%= link_to 'Edit', edit_photo_path(@photo) %> |
+<%= link_to 'Destroy', @photo, :confirm => 'Are you sure?', :method => :delete %> | 
+<%= link_to 'Back', photos_path %>
+
 <p>
   <%= image_tag @photo.body.url %>
 </p>
 
 
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Destroy', @photo, :confirm => 'Are you sure?', :method => :delete %> | 
-<%= link_to 'Back', photos_path %>
+<table>
+  <tr>
+    <th>Rating</th>
+    <th>Comment</th>
+  </tr>
+
+<% @photo.ratings.find(:all, :order => 'created_at DESC').each do |rating| %>
+  <tr>
+    <td><%= rating.value %></td>
+    <td><%=h rating.comment %></td>
+  </tr>
+<% end %>
+</table>
 
 
 <% content_for(:page_header) do %>
@@ -36,6 +56,7 @@
       method: 'post',
       parameters: {
         vote: yourchoice,
+        comment: $("comment").value,
         authenticity_token: '<%= form_authenticity_token %>'
       },
       onSuccess: function(transport) {}

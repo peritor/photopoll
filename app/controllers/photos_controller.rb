@@ -73,8 +73,16 @@ class PhotosController < ApplicationController
   
   def vote
     @photo = Photo.find(params[:id])
-    rating = Rating.new(:value => params[:vote], :photo => @photo)
+    rating = Rating.new(:value => params[:vote], :photo => @photo, :comment => params[:comment])
     rating.save!
     render :nothing => true
+  end
+  
+  def search
+    if params[:query].blank? || params[:query].to_s.strip.blank?
+      @photos = Photo.all
+    else
+      @photos = Photo.find(:all, :conditions => ["LOWER(name) LIKE ?", params[:query].to_s.downcase ])
+    end
   end
 end

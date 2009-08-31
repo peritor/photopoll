@@ -1,0 +1,19 @@
+
+<h1>Search results</h1>
+
+  <p>
+    Found <%= pluralize(@photos.size, "result")%> for '<%=h params[:query] %>'
+  </p>
+  
+  <form method="post" action="/photos/search">
+    <input type="text" name="query" id="query" value="<%= params[:query] %>">
+    <input type="submit" name="Search" value="Search">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  </form>
+
+  <br />
+  <%= render :partial => 'photos', :locals => {:photos => @photos} %>
+
+<br />
+
+<%= link_to 'Back', photos_path %>

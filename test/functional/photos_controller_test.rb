@@ -45,7 +45,8 @@ class PhotosControllerTest < ActionController::TestCase
   
   test "vote" do
     assert_difference('Rating.count', 1) do
-      xhr :post, :vote, :id => photos(:one).to_param, :vote => 3
+      xhr :post, :vote, :id => photos(:one).to_param, :vote => 3, :comment => 'hui!'
     end
+    assert_equal 'hui!', Rating.first.comment
   end
 end
