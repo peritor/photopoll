@@ -1,7 +1,15 @@
 <p>
   <b>Name:</b>
-  <%=h @photo.name %>
+  <%= @photo.name %>
 </p>
+<p>
+  Ratings: <%= @photo.ratings.count %>
+</p>
+<p>
+  Average Rating: <%= @photo.ratings.all.map{|x| x.value.to_i}.sum / @photo.ratings.count.to_f %>
+</p>
+
+<div id="vote"></div>
 <p>
   <%= image_tag @photo.body.url %>
 </p>
@@ -9,3 +17,31 @@
 
 <%= link_to 'Edit', edit_photo_path(@photo) %> |
 <%= link_to 'Back', photos_path %>
+
+<% content_for(:page_header) do %>
+  <script type="text/javascript" src="/javascripts/jvote/jVote.js"></script>
+	<script type="text/javascript">
+	/*<![CDATA[*/
+	var v;
+	window.onload = function()
+	{
+		v = new jVote('vote', {max:5,min:1,click:doStuff,labels:['1','2','3','4','5']});
+	};
+	function doStuff(event, yourchoice)
+	{
+	  
+	  new Ajax.Request('/photos/vote/<%=h @photo.id %>', {
+      method: 'post',
+      parameters: {
+        vote: yourchoice,
+        authenticity_token: '<%= form_authenticity_token %>'
+      },
+      onSuccess: function(transport) {}
+    });
+    
+
+		v.lock();
+	}
+	/*]]>*/
+	</script>
+<% end %>

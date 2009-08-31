@@ -1,6 +1,4 @@
 class PhotosController < ApplicationController
-  # GET /photos
-  # GET /photos.xml
   def index
     @photos = Photo.all
 
@@ -10,8 +8,6 @@ class PhotosController < ApplicationController
     end
   end
 
-  # GET /photos/1
-  # GET /photos/1.xml
   def show
     @photo = Photo.find(params[:id])
 
@@ -21,8 +17,6 @@ class PhotosController < ApplicationController
     end
   end
 
-  # GET /photos/new
-  # GET /photos/new.xml
   def new
     @photo = Photo.new
 
@@ -32,13 +26,10 @@ class PhotosController < ApplicationController
     end
   end
 
-  # GET /photos/1/edit
   def edit
     @photo = Photo.find(params[:id])
   end
 
-  # POST /photos
-  # POST /photos.xml
   def create
     @photo = Photo.new(params[:photo])
 
@@ -54,8 +45,6 @@ class PhotosController < ApplicationController
     end
   end
 
-  # PUT /photos/1
-  # PUT /photos/1.xml
   def update
     @photo = Photo.find(params[:id])
 
@@ -71,8 +60,6 @@ class PhotosController < ApplicationController
     end
   end
 
-  # DELETE /photos/1
-  # DELETE /photos/1.xml
   def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy
@@ -81,5 +68,12 @@ class PhotosController < ApplicationController
       format.html { redirect_to(photos_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def vote
+    @photo = Photo.find(params[:id])
+    rating = Rating.new(:value => params[:vote], :photo => @photo)
+    rating.save!
+    render :nothing => true
   end
 end

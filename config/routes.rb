@@ -1,10 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :photos
-
-  map.resources :photos
-
   
-  map.resources :photos
+  map.resources :photos do |photos|
+    photos.resources :ratings
+  end
   
   map.root :controller => "photos"
   

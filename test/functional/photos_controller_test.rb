@@ -42,4 +42,10 @@ class PhotosControllerTest < ActionController::TestCase
 
     assert_redirected_to photos_path
   end
+  
+  test "vote" do
+    assert_difference('Rating.count', 1) do
+      xhr :post, :vote, :id => photos(:one).to_param, :vote => 3
+    end
+  end
 end
