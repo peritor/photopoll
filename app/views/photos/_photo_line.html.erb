@@ -1,0 +1,9 @@
+<tr>
+<% photos.each do |photo| %>
+    <td>
+      <a href="<%= photo_url(photo) %>">
+        <%= image_tag photo.body.url, :width => 60 %>
+      </a>
+    </td>
+<% end %>
+</tr>

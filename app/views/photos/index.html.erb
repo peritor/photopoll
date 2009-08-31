@@ -8,7 +8,16 @@
 
 <h1>All photos</h1>
 
-  <%= render :partial => 'photos', :locals => {:photos => @photos} %>
+  <form method="post" action="/photos/search">
+    <input type="text" name="query" id="query">
+    <input type="submit" name="Search" value="Search">
+  </form>
+  
+  <table>
+  <% @photos.in_groups_of(4, false) do |group| %>
+    <%= render :partial => 'photo_line', :locals => {:photos => group} %>
+  <% end %>
+  </table>
 
 <br />
 
