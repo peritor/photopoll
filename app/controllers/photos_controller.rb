@@ -82,7 +82,13 @@ class PhotosController < ApplicationController
     if params[:query].blank? || params[:query].to_s.strip.blank?
       @photos = Photo.all
     else
-      @photos = Photo.find(:all, :conditions => ["LOWER(name) LIKE ?", params[:query].to_s.downcase ])
+      query = '%' + params[:query].to_s.downcase + '%'
+      conditions = ["LOWER(name) LIKE ? ", query]
+      if params[:include_comments].to_s == 'on'
+        conditions = [conditions.first + " OR LOWER(ratings.comment) LIKE ?", conditions.last, query ]
+      end
+
+      @photos = Photo.find(:all, :joins => :ratings, :conditions => conditions).uniq
     end
   end
 end

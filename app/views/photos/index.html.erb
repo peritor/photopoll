@@ -10,6 +10,7 @@
 
   <form method="post" action="/photos/search">
     <input type="text" name="query" id="query">
+    <input type="checkbox" name="include_comments" id="include_comments"> include Comments
     <input type="submit" name="Search" value="Search">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   </form>
