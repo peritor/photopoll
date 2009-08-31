@@ -1,19 +1,70 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Photos: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'my_layout' %>
   <%= javascript_include_tag :defaults %>
   <%= yield :page_header %>
+  <!--[if lte IE 7]>
+  <link href="css/patches/patch_my_layout.css" rel="stylesheet" type="text/css" />
+  <![endif]-->
 </head>
+
 <body>
-
-<p style="color: green"><%= flash[:notice] %></p>
-
-<%= yield %>
-
+  <div class="page_margins">
+    <div id="border-top">
+      <div id="edge-tl"></div>
+      <div id="edge-tr"></div>
+    </div>
+    <div class="page">
+      <!--
+      <div id="topnav">
+        <a href="#">Login</a> | <a href="#">Contact</a> | <a href="#">Imprint</a>
+      </div>
+      -->
+      <div id="header">
+        <a href="/">
+          <img src="/images/PhotoPoll.png" width="488" height="249" alt="PhotoPoll">
+        </a>
+      </div>
+      <!--
+      <div id="nav">
+        <a id="navigation" name="navigation"></a>
+        <div class="hlist">
+          <ul>
+            <li class="active"><strong>Button 1</strong></li>
+            <li><a href="#">Button 2</a></li>
+            <li><a href="#">Button 3</a></li>
+            <li><a href="#">Button 4</a></li>
+            <li><a href="#">Button 5</a></li>
+          </ul>
+        </div>
+      </div>
+      -->
+      <div id="main">
+        <p style="color: green"><%= flash[:notice] %></p>
+        <div id="col1">
+          <div id="col1_content" class="clearfix">
+            <%= yield %>
+          </div>
+        </div>
+        <div id="col3">
+          <div id="col3_content" class="clearfix">
+            <%= yield :right %>
+          </div>
+          <!-- IE Column Clearing -->
+          <div id="ie_clearing"> &#160; </div>
+        </div>
+      </div>
+      <!-- begin: #footer -->
+      <div id="footer">Layout based on <a href="http://www.yaml.de/">YAML</a>
+      </div>
+    </div>
+    <div id="border-bottom">
+      <div id="edge-bl"></div>
+      <div id="edge-br"></div>
+    </div>
+  </div>
 </body>
 </html>
