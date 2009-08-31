@@ -1,25 +1,14 @@
-<h1>Listing photos</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Preview</th>
-    <th>#Ratings</th>
-    <th>Average</th>
-  </tr>
+<h1>Top photos</h1>
 
-<% @photos.each do |photo| %>
-  <tr>
-    <td><%=h photo.name %></td>
-    <td><%= image_tag photo.body.url, :width => 60 %></td>
-    <td><%= photo.ratings.count %></td>
-    <td><%= photo.ratings.all.map{|x| x.value.to_i}.sum / photo.ratings.count.to_f %></td>
-    <td><%= link_to 'Show', photo %></td>
-    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-    <td><%= link_to 'Destroy', photo, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <%= render :partial => 'photos', :locals => {:photos => @top_photos} %>
+
+<br />
+
+
+<h1>All photos</h1>
+
+  <%= render :partial => 'photos', :locals => {:photos => @photos} %>
 
 <br />
 

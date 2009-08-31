@@ -16,7 +16,9 @@
 
 
 <%= link_to 'Edit', edit_photo_path(@photo) %> |
+<%= link_to 'Destroy', @photo, :confirm => 'Are you sure?', :method => :delete %> | 
 <%= link_to 'Back', photos_path %>
+
 
 <% content_for(:page_header) do %>
   <script type="text/javascript" src="/javascripts/jvote/jVote.js"></script>

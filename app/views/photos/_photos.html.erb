@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Preview</th>
+    <th>#Ratings</th>
+    <th>Average</th>
+  </tr>
+
+<% photos.each do |photo| %>
+  <tr>
+    <td><%= link_to h(photo.name), photo %></td>
+    <td>
+      <a href="<%= photo_url(photo) %>">
+        <%= image_tag photo.body.url, :width => 60 %>
+      </a>
+    </td>
+    <td><%= photo.ratings.count %></td>
+    <td><%= photo.ratings.all.map{|x| x.value.to_i}.sum / photo.ratings.count.to_f %></td>
+  </tr>
+<% end %>
+</table>
