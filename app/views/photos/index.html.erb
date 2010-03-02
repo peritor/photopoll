@@ -26,8 +26,12 @@
   <h1>Photo of the day</h1>
   <p>
     <% photo_of_the_day = Photo.find(:first, :conditions => ["LOWER(name) LIKE ? ", Time.now.strftime('%a').match(/[A-Z]/).to_s.downcase + '%'] ) || Photo.first %>
-    <a href="<%= photo_url(photo_of_the_day) %>">
-      <%= image_tag photo_of_the_day.body.url, :width => 120 %>
-    </a>
+    <% if photo_of_the_day %>
+      <a href="<%= photo_url(photo_of_the_day) %>">
+        <%= image_tag photo_of_the_day.body.url, :width => 120 %>
+      </a>
+    <% else %>
+      No photos uploaded yet!
+    <% end %>
   </p>
 <% end %>
