@@ -53,10 +53,15 @@
   /*--- Headings | Überschriften ------------------------------------------------------------------------*/
 
   h1,h2,h3,h4,h5,h6 {
-    font-family: "Times New Roman", Times, serif;
-    font-weight:normal;
     color:#222;
     margin: 0 0 0.25em 0;
+    text-decoration: none;
+    font: 24px/1em 'Droid Sans', sans-serif;
+    font-weight: bold;
+    text-shadow: rgba(200,200,200,.5) 0 1px 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
   }
 
   h1 { font-size: 250%; }                       /* 30px */
@@ -215,4 +220,16 @@
     background-position: 0 0.45em;
   }
   */
+
+  .photo {
+    margin:10px;
+    -moz-box-shadow: 2px 2px 4px 0px #999;
+    -webkit-box-shadow: 2px 2px 4px 0px #999;
+    box-shadow: 2px 2px 4px 0px #999;
+  }
+
+  div.container {
+    margin:20px 0px;
+  }
+  
 }

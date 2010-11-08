@@ -1,29 +1,24 @@
-<p>
-  <b>Name:</b>
-  <%= @photo.name %>
-</p>
-<p>
-  Ratings: <%= @photo.ratings.count %>
-</p>
-<p>
-  Average Rating: <%= @photo.ratings.all.map{|x| x.value.to_i}.sum / @photo.ratings.count.to_f %>
-</p>
+<div class="container">
+  <%= image_tag @photo.body.url, :class=>'photo' %>
+</div>
 
-<p>
-  Your rating: <input type="text" name="comment" id="comment">
-  <div id="vote"></div>
-</p>
+<div class="container clearfix">
+  <%= link_to 'Edit', edit_photo_path(@photo) %> |
+  <%= link_to 'Destroy', @photo, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to 'Go Back', photos_path %>
+</div>
 
-<br />
+<% content_for :right do %>
+<div class="container">
+  <h1><%= @photo.name %></h1>
+  Rating: <%= @photo.ratings.all.map{|x| x.value.to_i}.sum / @photo.ratings.count.to_f %> (<%= @photo.ratings.count %>)
+</div>
 
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Destroy', @photo, :confirm => 'Are you sure?', :method => :delete %> | 
-<%= link_to 'Back', photos_path %>
-
-<p>
-  <%= image_tag @photo.body.url %>
-</p>
-
+<div class="container">
+  <h2>Your rating</h2>
+  Comment: <input type="text" name="comment" id="comment" /><br/>
+  Vote: <div id="vote"></div>
+</div>
 
 <table>
   <tr>
@@ -38,6 +33,10 @@
   </tr>
 <% end %>
 </table>
+
+<% end %>
+
+
 
 
 <% content_for(:page_header) do %>

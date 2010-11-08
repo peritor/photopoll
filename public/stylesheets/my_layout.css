@@ -16,6 +16,7 @@
 /* import screen layout | Screen-Layout einbinden */
 @import url(../yaml/navigation/nav_slidingdoor.css);
 @import url(../css/screen/basemod.css);
+@import url(../css/buttons.css);
 @import url(../css/screen/content.css);
 
 /* import print layout | Druck-Layout einbinden */

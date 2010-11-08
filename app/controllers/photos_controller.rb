@@ -2,7 +2,7 @@ class PhotosController < ApplicationController
   def index
     @photos = Photo.all
     begin
-      @top_photos = Photo.find(:all, :limit => 3, :joins => :ratings, :group => 'ratings.photo_id', :having => 'ratings.value > 3')
+      @top_photos = Photo.find(:all, :limit => 3, :joins => :ratings, :group => 'ratings.photo_id', :having => 'ratings.value > 2')
     rescue
       @top_photos = []
     end

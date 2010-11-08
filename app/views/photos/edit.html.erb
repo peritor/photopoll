@@ -1,22 +1,23 @@
-<h1>Editing photo</h1>
+<div class="container">
+  <h1>Editing photo <%= @photo.name %></h1>
 
-<% form_for @photo, :html => { :multipart => true } do |f| %>
-  <%= f.error_messages %>
+  <% form_for @photo, :html => { :multipart => true } do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :name %><br/>
+      <%= f.text_field :name %><br/><br/>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    Current Body: <%= image_tag @photo.body.url, :width => 60 %>
-  </p>
-  <p>
-    <%= f.file_field :body %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
+      <%= f.file_field :body %>
+    </p>
+
+      <%= f.submit 'Update', :class=>"button blue" %>
+  <% end %>
+</div>
+<div class="container">
+  <%= link_to 'Show', @photo %> |
+  <%= link_to 'Back', photos_path %>
+</div>
+
+<% content_for :right do %>
+  <%= image_tag @photo.body.url, :width => 250 %>
 <% end %>
-
-<%= link_to 'Show', @photo %> |
-<%= link_to 'Back', photos_path %>

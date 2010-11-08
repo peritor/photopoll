@@ -23,6 +23,7 @@
 
 @import url(screen/basemod.css);
 @import url(screen/content.css);
+@import url(buttons.css);
 
 /* import print layout | Druck-Layout einbinden */
 @import url(../yaml/print/print_003_draft.css);

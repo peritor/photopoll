@@ -1,28 +1,39 @@
-<h1>All Photos</h1>
+<div class="clearfix container">
+  <h1>All Photos</h1>
 
-  <form method="post" action="/photos/search">
-    <input type="text" name="query" id="query" value="<%= params[:query] %>">
-    <input type="checkbox" name="include_comments" id="include_comments" <%= params[:include_comments].to_s == 'on' ? 'checked="checked"' : '' %>> include Comments
-    <input type="checkbox" name="limit_to_recents" id="limit_to_recents" <%= params[:limit_to_recents].to_s == 'on' ? 'checked="checked"' : '' %>> limit to recent results
-    <input type="submit" name="Search" value="Search">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  </form>
+  <div>
+    <% @photos.in_groups_of(3, false) do |group| %>
+      <%= render :partial => 'photo_line', :locals => {:photos => group} %>
+    <% end %>
+  </div>
+</div>
 
-  <table>
-  <% @photos.in_groups_of(8, false) do |group| %>
-    <%= render :partial => 'photo_line', :locals => {:photos => group} %>
-  <% end %>
-  </table>
-
-<br />
-
-<%= link_to 'New photo', new_photo_path %>
-
+<div class="container">
+  <%= link_to 'Add a new photo', new_photo_path, :class => 'button blue' %>
+</div>
 
 <% content_for :right do %>
+<div class="container">
+  <%= link_to 'Add a new photo', new_photo_path, :class => 'button blue' %>
+</div>
+
+<div class="container">
+  <h1>Search</h1>
+  <form method="post" action="/photos/search">
+    <input type="text" name="query" id="query" value="<%= params[:query] %>" />
+    <input type="submit" name="Search" value="Search"/><br/>
+    <input type="checkbox" name="include_comments" id="include_comments" <%= params[:include_comments].to_s == 'on' ? 'checked="checked"' : '' %>/> include Comments
+    <input type="checkbox" name="limit_to_recents" id="limit_to_recents" <%= params[:limit_to_recents].to_s == 'on' ? 'checked="checked"' : '' %>/> limit to recent results
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+  </form>
+</div>
+
+<div class="container">
   <h1>Top 3 photos</h1>
   <%= render :partial => 'photos', :locals => {:photos => @top_photos} %>
-  
+</div>
+
+<div class="container">
   <h1>Photo of the day</h1>
   <p>
     <% photo_of_the_day = Photo.find(:first, :conditions => ["LOWER(name) LIKE ? ", Time.now.strftime('%a').match(/[A-Z]/).to_s.downcase + '%'] ) || Photo.first %>
@@ -34,4 +45,5 @@
       No photos uploaded yet!
     <% end %>
   </p>
+</div>
 <% end %>
