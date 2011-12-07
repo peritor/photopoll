@@ -40,7 +40,7 @@
       </div>
       <!-- begin: #footer -->
       <div id="footer">Layout based on <a href="http://www.yaml.de/">YAML</a>
-      Ruby: <%= RUBY_VERSION rescue 'n/a' %>, Rails: <%= Rails.version rescue 'n/a' %>
+      Ruby: <%= "#{RUBY_VERSION}p#{Config::CONFIG['PATCHLEVEL']}" rescue 'n/a' %>, Rails: <%= Rails.version rescue 'n/a' %>
       </div>
     </div>
     <div id="border-bottom">
