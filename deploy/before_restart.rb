@@ -9,4 +9,8 @@ app_deploy = node[:deploy][release_path.split('/')[-3]]
   file.puts [Time.now, 'app_deploy.class', app_deploy.class].join("\t")
 end
 
+::File.open('/tmp/dhdbg', 'a') do |file|
+  file.puts [Time.now, 'app_deploy[:rails_env]', app_deploy[:rails_env]].join("\t")
+end
+
 
