@@ -5,7 +5,7 @@ run "cd #{release_path} && rake stats > /tmp/stats"
 end
 
 ::File.open('/tmp/dhdbg', 'a') do |file|
-  file.puts [Time.now, 'deploy.class', deploy.class].join("\t")
+  file.puts [Time.now, "release_path.split('/').inspect", release_path.split('/').inspect].join("\t")
 end
 
 
