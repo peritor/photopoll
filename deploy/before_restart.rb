@@ -1,1 +1,1 @@
-run "cd #{release_path} && rake stats > /tmp/stats"
+run "cd #{release_path} && bundle exec rake stats > /tmp/stats"
