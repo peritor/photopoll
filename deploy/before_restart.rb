@@ -17,5 +17,4 @@ puts %x(
   echo 'whoami:' >> before_restart
   whoami >> before_restart
   echo 'release_path: #{release_path}' >> before_restart
-  echo 'release_path: #{current_path}' >> before_restart
 )
