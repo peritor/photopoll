@@ -7,6 +7,7 @@ gem 'rails', '3.0.3'
 
 gem 'mysql2', '0.2.6'
 gem "paperclip", "~> 2.3"
+gem "cocaine", "0.1.0"
 
 # Use unicorn as the web server
 gem 'unicorn'
